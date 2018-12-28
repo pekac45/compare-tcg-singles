@@ -10,6 +10,8 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import './app.css';
+import { BrowserRouter as Router, Link } from 'react-router';
+import queryString from 'query-string';
 
 const results = [];
 
@@ -75,6 +77,10 @@ class ResultList extends Component {
   componentDidMount() {
     this.loadData();
   }
+
+  // const params = new URLSearchParams(document.location.search.substring(1));
+  // const game = params.get('game');
+  // const card = params.get('card');
 
   loadData() {
     fetch('/api/results')

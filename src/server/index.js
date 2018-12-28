@@ -34,13 +34,13 @@ const results = [
   },
 ];
 
-// app.get('/:game/:card/', (req, res) => {
-//   console.log(req.params);
-//   res.send();
-// });
+app.get('/', (req, res) => {
+  console.log(req.params);
+  res.send();
+});
 
 app.get('/api/results/', (req, res) => {
-  console.log(req);
+  console.log(req.params);
   const metadata = { total_count: results.length };
   res.json({ _metadata: metadata, records: results });
 });
