@@ -1,9 +1,12 @@
+/* eslint-disable global-require */
+/* eslint-disable prefer-destructuring */
 const express = require('express');
+// module.scrape = require('../shops/scrapeDestiny');
 // const scrape = require('../shops/scrapeDestiny');
 
 const app = express();
 
-const results = [
+let results = [
   {
     id: 1,
     title: 'Snoke',
@@ -18,31 +21,32 @@ const results = [
     stock: '2',
     shop: 'Bearded Card Trader',
   },
-  {
-    id: 3,
-    title: 'Snoke',
-    price: '£22.00',
-    stock: '2',
-    shop: 'Shaved Card Trader',
-  },
-  {
-    id: 4,
-    title: 'Snoke',
-    price: '£25.00',
-    stock: '3',
-    shop: 'Hairless Card Trader',
-  },
 ];
 
-app.get('/', (req, res) => {
-  console.log(req.params);
-  res.send();
-});
-
 app.get('/api/results/', (req, res) => {
-  console.log(req.params);
-  const metadata = { total_count: results.length };
-  res.json({ _metadata: metadata, records: results });
+  const game = req.query.game;
+  const card = req.query.card;
+  console.log(game);
+  console.log(card);
+
+  if (game === 'destiny') {
+    console.log('starting scraping destiny');
+    results = [];
+
+    const metadata = { total_count: results.length };
+    res.json({ _metadata: metadata, records: results });
+  } else if (game === 'champions') {
+    // let results = [];
+    // // TODO: Implement champions
+    // // eslint-disable-next-line import/no-unresolved
+    // const scrape = require('../shops/scrapeChampions');
+    // // scrape(card);
+    // // results = scrape(card);
+    // const metadata = { total_count: results.length };
+    // res.json({ _metadata: metadata, records: results });
+  } else {
+    res.json({});
+  }
 });
 
 app.listen(8080, () => {

@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 // https://rachaelsgamestore.com/product/legacy-compete-saga-set
 // https://rachaelsgamestore.com/product/across-the-galaxy-booster-pack
 
+// const item = module.parent.card; // from app.js
 const item = process.argv[2];
 
 async function scrape(card) {

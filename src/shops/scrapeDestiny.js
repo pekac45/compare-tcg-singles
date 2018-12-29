@@ -5,5 +5,5 @@ const rachel = require('./rachelsGameStore');
 const bearded = require('./beardedCardTrader');
 
 exports.results = function() {
-  [rachel + bearded];
+  [rachel, bearded];
 };

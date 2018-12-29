@@ -78,12 +78,17 @@ class ResultList extends Component {
     this.loadData();
   }
 
-  // const params = new URLSearchParams(document.location.search.substring(1));
   // const game = params.get('game');
   // const card = params.get('card');
 
   loadData() {
-    fetch('/api/results')
+    let params;
+    if (document.location.search.substring(1)) {
+      params = document.location.search.substring(1);
+    } else {
+      params = '';
+    }
+    fetch(`/api/results/?${params}`)
       .then(response => response.json())
       .then(data => {
         console.log('Total count of prices:', data._metadata.total_count);
