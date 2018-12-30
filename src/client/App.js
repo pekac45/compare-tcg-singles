@@ -37,7 +37,7 @@ class ResultRow extends Component {
     const result = this.props.result;
     return (
       <tr>
-        <td>{result.id}</td>
+        <td>{result.shop}</td>
         <td>{result.title}</td>
         <td>{result.price}</td>
         <td>{result.stock}</td>
