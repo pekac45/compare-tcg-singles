@@ -8,9 +8,9 @@ const puppeteer = require('puppeteer');
 
 // const item = process.argv[2]; // from cmd line
 
-const scrape = async () => {
+module.exports = async function scrape(item) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
 
@@ -67,20 +67,17 @@ const scrape = async () => {
   return result;
 };
 
-scrape(item)
-  .then(value => {
-    console.log(value); // Success!
-  })
-  // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-  .catch(err => {
-    console.log(err);
-    return {
-      stock: 'out',
-      shop: 'rachel',
-    };
-  });
-
-// eslint-disable-next-line func-names
-exports.bearded = function() {
-  return scrape;
-};
+// this calls the function. Uncomment only if non modular.
+// ----
+// scrape(item)
+//   .then(value => {
+//     console.log(value); // Success!
+//   })
+//   // TODO: CATCH ERROR TO RETURN NOT IN STOCK
+//   .catch(err => {
+//     console.log(err);
+//     return {
+//       stock: 'out',
+//       shop: 'rachel',
+//     };
+//   });

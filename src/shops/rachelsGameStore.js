@@ -4,17 +4,16 @@ const puppeteer = require('puppeteer');
 // https://rachaelsgamestore.com/product/legacy-compete-saga-set
 // https://rachaelsgamestore.com/product/across-the-galaxy-booster-pack
 
-// const item = module.parent.card; // from index.js
-// const item = process.argv[2]; // from cmd
-const item = 'torment';
+// const item = 'torment';        // test card
+// const item = process.argv[2];  // from cmd
 
-const scrape = async function scrape(card) {
+module.exports = async function scrape(item) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
 
-  await page.goto(`https://rachaelsgamestore.com/product/${card}`);
+  await page.goto(`https://rachaelsgamestore.com/product/${item}`);
 
   const result = await page.evaluate(() => {
     const title = document.querySelector('h1').innerText;
@@ -41,6 +40,8 @@ const scrape = async function scrape(card) {
   return result;
 };
 
+// this calls the function. Uncomment only if non modular.
+// ----
 // scrape(item)
 //   .then(value => {
 //     console.log(value); // Success!
@@ -53,16 +54,3 @@ const scrape = async function scrape(card) {
 //       shop: 'rachel',
 //     };
 //   });
-
-// exports.rachel = function() {
-//   return scrape;
-// };
-
-// eslint-disable-next-line func-names
-// module.exports = function() {
-//   scrape(item);
-// };
-
-module.exports = {
-  scrapeRachel: scrape(item),
-};

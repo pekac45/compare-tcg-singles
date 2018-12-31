@@ -2,109 +2,12 @@
 /* eslint-disable global-require */
 /* eslint-disable prefer-destructuring */
 const express = require('express');
-const puppeteer = require('puppeteer');
-// const scrapeRachel = require('../shops/rachelsGameStore');
+const scrapeRachel = require('../shops/rachelsGameStore');
+const scrapeBearded = require('../shops/beardedCardTrader');
+
 // const scrape = require('../shops/scrapeDestiny');
 
 const app = express();
-
-// code from rachelsGameStore.js
-// eslint-disable-next-line no-inner-declarations
-async function scrapeRachel(item) {
-  const browser = await puppeteer.launch({
-    headless: true,
-  });
-  const page = await browser.newPage();
-
-  await page.goto(`https://rachaelsgamestore.com/product/${item}`);
-
-  const result = await page.evaluate(() => {
-    const title = document.querySelector('h1').innerText;
-    const sale = Boolean(document.querySelector('.onsale'));
-
-    let price;
-    if (sale) {
-      price = document.querySelector('p.price > ins > span').innerText;
-    } else {
-      price = document.querySelector('p.price > span:nth-child(1)').innerText;
-    }
-
-    const stock = document.querySelector('.stock').innerText.split(' ')[0];
-
-    return {
-      title,
-      price,
-      stock,
-      shop: 'Rachels Game Store',
-    };
-  });
-
-  browser.close();
-  return result;
-}
-// End of rachelsGameStore declaration
-
-// code from beardedCardTrader.js
-async function scrapeBearded(card) {
-  const browser = await puppeteer.launch({
-    headless: true,
-  });
-  const page = await browser.newPage();
-
-  await page.goto('https://www.thebeardedcardtrader.com/', {
-    waitUntil: 'networkidle2',
-  });
-
-  // this navigates to the card name and comes to first one in the list
-  await page.waitFor('.wsite-input');
-  // eslint-disable-next-line no-param-reassign
-  await page.$eval('.wsite-input', (el, value) => (el.value = value), card);
-  await page.click(
-    '#wsite-content > div > div > div > div > div > div.wsite-search-element-outer > div > form > div > span'
-  );
-  await page.waitForSelector(
-    '#wsite-search-product-results > li:nth-child(1) > a > span'
-  );
-  await page.click(
-    '#wsite-search-product-results > li:nth-child(1) > a > span'
-  );
-
-  await page.waitForSelector('#wsite-com-product-inventory-message');
-
-  const result = await page.evaluate(() => {
-    const title = document.querySelector('#wsite-com-product-title').innerText;
-    const sale = Boolean(document.querySelector('#wsite-com-product-on-sale'));
-
-    // returns correct price if on sale or regular price
-    let price;
-    if (sale) {
-      price = document.querySelector('#wsite-com-product-price-sale > span')
-        .innerText;
-    } else {
-      price = document.querySelector(
-        '#wsite-com-product-price > span:nth-child(1)'
-      ).innerText;
-    }
-
-    const stock = document
-      .querySelector('#wsite-com-product-inventory-message')
-      .innerText.split(' ')[0];
-
-    // TODO: MAKE SURE IT RETURNS CORRECT CARD BY COMPARING THE TITLE
-
-    return {
-      title,
-      price,
-      stock,
-      shop: 'Bearded Card Trader',
-    };
-  });
-
-  browser.close();
-  return result;
-}
-
-// end of beardedCardTrader.js
 
 app.get('/api/results/', (req, res) => {
   const game = req.query.game;
@@ -150,6 +53,7 @@ app.get('/api/results/', (req, res) => {
         };
       });
 
+    // recursive function which makes sure there are 2 parts before sending result
     // eslint-disable-next-line no-inner-declarations
     function sendData() {
       if (results.length === 2) {
