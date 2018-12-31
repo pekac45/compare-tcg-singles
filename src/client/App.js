@@ -10,8 +10,6 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import './app.css';
-import { BrowserRouter as Router, Link } from 'react-router';
-import queryString from 'query-string';
 
 const results = [];
 
@@ -56,7 +54,7 @@ class ResultTable extends Component {
       <table>
         <thead>
           <tr>
-            <th>id</th>
+            <th>shop</th>
             <th>title</th>
             <th>price</th>
             <th>stock</th>
@@ -91,7 +89,7 @@ class ResultList extends Component {
     fetch(`/api/results/?${params}`)
       .then(response => response.json())
       .then(data => {
-        console.log('Total count of prices:', data._metadata.total_count);
+        // console.log('Total count of prices:', data._metadata.total_count);
         this.setState({ results: data.records });
       })
       .catch(err => {

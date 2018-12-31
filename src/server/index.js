@@ -3,7 +3,7 @@
 /* eslint-disable prefer-destructuring */
 const express = require('express');
 const puppeteer = require('puppeteer');
-// module.scrape = require('../shops/scrapeDestiny');
+// const scrapeRachel = require('../shops/rachelsGameStore');
 // const scrape = require('../shops/scrapeDestiny');
 
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 // eslint-disable-next-line no-inner-declarations
 async function scrapeRachel(item) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
 
@@ -43,10 +43,11 @@ async function scrapeRachel(item) {
   return result;
 }
 // End of rachelsGameStore declaration
+
 // code from beardedCardTrader.js
 async function scrapeBearded(card) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   const page = await browser.newPage();
 
@@ -118,11 +119,9 @@ app.get('/api/results/', (req, res) => {
     scrapeRachel(card)
       // eslint-disable-next-line arrow-parens
       .then(value => {
-        console.log(value); // Success!
+        // console.log(value); // Success!
         results.push(value);
         console.log(results);
-
-        return results;
       })
       // TODO: CATCH ERROR TO RETURN NOT IN STOCK
       // eslint-disable-next-line arrow-parens
@@ -137,11 +136,9 @@ app.get('/api/results/', (req, res) => {
     scrapeBearded(card)
       // eslint-disable-next-line arrow-parens
       .then(value => {
-        console.log(value); // Success!
+        // console.log(value); // Success!
         results.push(value);
         console.log(results);
-
-        return results;
       })
       // TODO: CATCH ERROR TO RETURN NOT IN STOCK
       // eslint-disable-next-line arrow-parens
@@ -153,20 +150,21 @@ app.get('/api/results/', (req, res) => {
         };
       });
 
-    setTimeout(() => {
-      console.log('waiting');
-      const metadata = { total_count: results.length };
-      res.json({ _metadata: metadata, records: results });
-    }, 20000);
+    // eslint-disable-next-line no-inner-declarations
+    function sendData() {
+      if (results.length === 2) {
+        const metadata = { total_count: results.length };
+        console.log(`${metadata.total_count} results, sending data!`);
+        res.json({ _metadata: metadata, records: results });
+      } else {
+        setTimeout(() => {
+          sendData();
+        }, 2000);
+      }
+    }
+    sendData();
   } else if (game === 'champions') {
-    // let results = [];
     // // TODO: Implement champions
-    // // eslint-disable-next-line import/no-unresolved
-    // const scrape = require('../shops/scrapeChampions');
-    // // scrape(card);
-    // // results = scrape(card);
-    // const metadata = { total_count: results.length };
-    // res.json({ _metadata: metadata, records: results });
   } else {
     res.json({});
   }

@@ -4,10 +4,11 @@ const puppeteer = require('puppeteer');
 // https://rachaelsgamestore.com/product/legacy-compete-saga-set
 // https://rachaelsgamestore.com/product/across-the-galaxy-booster-pack
 
-const item = module.parent.card; // from app.js
-// const item = process.argv[2];
+// const item = module.parent.card; // from index.js
+// const item = process.argv[2]; // from cmd
+const item = 'torment';
 
-async function scrape(card) {
+const scrape = async function scrape(card) {
   const browser = await puppeteer.launch({
     headless: false,
   });
@@ -38,22 +39,30 @@ async function scrape(card) {
 
   browser.close();
   return result;
-}
+};
 
-scrape(item)
-  .then(value => {
-    console.log(value); // Success!
-  })
-  // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-  .catch(err => {
-    console.log(err);
-    return {
-      stock: 'out',
-      shop: 'rachel',
-    };
-  });
+// scrape(item)
+//   .then(value => {
+//     console.log(value); // Success!
+//   })
+//   // TODO: CATCH ERROR TO RETURN NOT IN STOCK
+//   .catch(err => {
+//     console.log(err);
+//     return {
+//       stock: 'out',
+//       shop: 'rachel',
+//     };
+//   });
+
+// exports.rachel = function() {
+//   return scrape;
+// };
 
 // eslint-disable-next-line func-names
-exports.rachel = function() {
-  return scrape;
+// module.exports = function() {
+//   scrape(item);
+// };
+
+module.exports = {
+  scrapeRachel: scrape(item),
 };

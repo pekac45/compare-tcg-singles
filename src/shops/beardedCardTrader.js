@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
 // https://www.thebeardedcardtrader.com/store/p2097/Snoke.html#/
 // https://www.thebeardedcardtrader.com/store/p324/First_Order_Storm_Trooper.html#/
 
-const item = process.argv[2];
+// const item = process.argv[2]; // from cmd line
 
 const scrape = async () => {
   const browser = await puppeteer.launch({
