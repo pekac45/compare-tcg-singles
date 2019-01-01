@@ -11,7 +11,7 @@ const { TimeoutError } = require('puppeteer/Errors');
 
 module.exports = async function scrape(item) {
   const browser = await puppeteer.launch({
-    headless: false,
+    // headless: false,
   });
   const page = await browser.newPage();
 

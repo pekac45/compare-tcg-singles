@@ -1,11 +1,12 @@
 /* eslint-disable space-before-function-paren */
 /* eslint-disable arrow-parens */
 const puppeteer = require('puppeteer');
+const { TimeoutError } = require('puppeteer/Errors');
 // https://rachaelsgamestore.com/product/legacy-compete-saga-set
 // https://rachaelsgamestore.com/product/across-the-galaxy-booster-pack
 
-// const item = 'torment';        // test card
-// const item = process.argv[2];  // from cmd
+// const test = 'torment'; // test card
+// const test = process.argv[2];  // from cmd
 
 module.exports = async function scrape(item) {
   const parsedCard = item
@@ -13,48 +14,57 @@ module.exports = async function scrape(item) {
     .replace(/[“”"–'’]/g, '')
     .replace(/--/g, '-');
   const browser = await puppeteer.launch({
-    headless: true,
+    // headless: false,
   });
+
+  let result = {
+    title: item,
+    price: 0,
+    stock: 0,
+    shop: 'Rachels Game Store',
+  };
+
   const page = await browser.newPage();
 
   await page.goto(`https://rachaelsgamestore.com/product/${parsedCard}`);
+  try {
+    result = await page.evaluate(() => {
+      const title = document.querySelector('h1').innerText;
+      const sale = Boolean(document.querySelector('.onsale'));
 
-  const result = await page.evaluate(() => {
-    const title = document.querySelector('h1').innerText;
-    const sale = Boolean(document.querySelector('.onsale'));
+      let price;
+      if (sale) {
+        price = document.querySelector('p.price > ins > span').innerText;
+      } else {
+        price = document.querySelector('p.price > span:nth-child(1)').innerText;
+      }
 
-    let price;
-    if (sale) {
-      price = document.querySelector('p.price > ins > span').innerText;
-    } else {
-      price = document.querySelector('p.price > span:nth-child(1)').innerText;
+      const stock = document.querySelector('.stock').innerText.split(' ')[0];
+
+      return {
+        title,
+        price,
+        stock,
+        shop: 'Rachels Game Store',
+      };
+    });
+  } catch (err) {
+    if (err instanceof TimeoutError) {
+      browser.close();
+      return {
+        title: item,
+        price: 0,
+        stock: 0,
+        shop: 'Rachels Game Store',
+      };
     }
-
-    const stock = document.querySelector('.stock').innerText.split(' ')[0];
-
-    return {
-      title,
-      price,
-      stock,
-      shop: 'Rachels Game Store',
-    };
-  });
-
+  }
   browser.close();
   return result;
 };
 
 // this calls the function. Uncomment only if non modular.
 // ----
-// scrape(item)
-//   .then(value => {
-//     console.log(value); // Success!
-//   })
-//   // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-//   .catch(err => {
-//     console.log(err);
-//     return {
-//       stock: 'out',
-//       shop: 'rachel',
-//     };
-//   });
+// scrape(test).then(value => {
+//   console.log(value); // Success!
+// });
