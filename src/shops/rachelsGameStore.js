@@ -8,12 +8,16 @@ const puppeteer = require('puppeteer');
 // const item = process.argv[2];  // from cmd
 
 module.exports = async function scrape(item) {
+  const parsedCard = item
+    .replace(/\s+/g, '-')
+    .replace(/[“”"–'’]/g, '')
+    .replace(/--/g, '-');
   const browser = await puppeteer.launch({
     headless: true,
   });
   const page = await browser.newPage();
 
-  await page.goto(`https://rachaelsgamestore.com/product/${item}`);
+  await page.goto(`https://rachaelsgamestore.com/product/${parsedCard}`);
 
   const result = await page.evaluate(() => {
     const title = document.querySelector('h1').innerText;

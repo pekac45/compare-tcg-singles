@@ -1,5 +1,3 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable global-require */
 /* eslint-disable prefer-destructuring */
 const express = require('express');
 const scrapeRachel = require('../shops/rachelsGameStore');
@@ -20,14 +18,12 @@ app.get('/api/results/', (req, res) => {
     const results = [];
 
     scrapeRachel(card)
-      // eslint-disable-next-line arrow-parens
       .then(value => {
         // console.log(value); // Success!
         results.push(value);
         console.log(results);
       })
       // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-      // eslint-disable-next-line arrow-parens
       .catch(err => {
         console.log(err);
         return {
@@ -37,14 +33,12 @@ app.get('/api/results/', (req, res) => {
       });
     // end rachelsGameStore.js
     scrapeBearded(card)
-      // eslint-disable-next-line arrow-parens
       .then(value => {
         // console.log(value); // Success!
         results.push(value);
         console.log(results);
       })
       // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-      // eslint-disable-next-line arrow-parens
       .catch(err => {
         console.log(err);
         return {
@@ -53,7 +47,8 @@ app.get('/api/results/', (req, res) => {
         };
       });
 
-    // recursive function which makes sure there are 2 parts before sending result
+    // recursive function which makes sure there are 2 items in object,
+    // then sends result
     // eslint-disable-next-line no-inner-declarations
     function sendData() {
       if (results.length === 2) {

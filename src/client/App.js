@@ -1,11 +1,6 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-unused-vars */
-/* eslint-disable object-shorthand */
-/* eslint-disable react/no-unused-state */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable arrow-parens */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
