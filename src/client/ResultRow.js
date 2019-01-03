@@ -14,7 +14,7 @@ ResultRow.propTypes = {
   result: PropTypes.shape({
     shop: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.string,
     stock: PropTypes.string,
   }).isRequired,
 };

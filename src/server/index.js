@@ -29,7 +29,7 @@ app.get('/api/results/', (req, res) => {
       .catch(err => {
         console.log(err);
         return {
-          stock: 'out',
+          stock: 0,
           shop: 'rachel',
         };
       });
@@ -44,7 +44,7 @@ app.get('/api/results/', (req, res) => {
       .catch(err => {
         console.log(err);
         return {
-          stock: 'out',
+          stock: 0,
           shop: 'bearded',
         };
       });

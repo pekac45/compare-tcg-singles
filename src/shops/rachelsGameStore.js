@@ -19,7 +19,7 @@ module.exports = async function scrape(item) {
 
   let result = {
     title: item,
-    price: 0,
+    price: '£0',
     stock: 0,
     shop: 'Rachels Game Store',
   };

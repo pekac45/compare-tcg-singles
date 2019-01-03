@@ -38,7 +38,7 @@ module.exports = async function scrape(item) {
       browser.close();
       return {
         title: item,
-        price: 0,
+        price: '£0',
         stock: 0,
         shop: 'Bearded Card Trader',
       };
