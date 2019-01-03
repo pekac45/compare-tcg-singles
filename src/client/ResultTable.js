@@ -5,7 +5,7 @@ import ResultRow from './ResultRow';
 
 const ResultTable = props => {
   const resultRows = props.results.map(result => (
-    <ResultRow key={result.id} result={result} />
+    <ResultRow key={result.shop} result={result} />
   ));
 
   return (
