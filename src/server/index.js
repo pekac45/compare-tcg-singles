@@ -14,7 +14,7 @@ app.get('/api/results/', (req, res) => {
   console.log(card);
 
   if (game === 'destiny') {
-    console.log('starting scraping destiny');
+    console.log('scraping destiny');
     const results = [];
 
     scrapeRachel(card)
@@ -58,7 +58,7 @@ app.get('/api/results/', (req, res) => {
       } else {
         setTimeout(() => {
           sendData();
-        }, 2000);
+        }, 10000);
       }
     }
     sendData();

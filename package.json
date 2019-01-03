@@ -21,6 +21,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "express": "^4.16.3",
+    "prop-types": "^15.6.2",
     "puppeteer": "^1.11.0",
     "react": "^16.7.0",
     "react-autosuggest": "^9.4.2",
