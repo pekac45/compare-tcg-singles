@@ -48,6 +48,18 @@ app.get('/api/results/', (req, res) => {
 //   res.sendFile(path.join(`${__dirname}/dist/index.html`));
 // });
 
-app.listen(8080, () => {
-  console.log('App started on port 8080');
+// DEV APP LISTEN
+// ----------
+// app.listen(8080, () => {
+//   console.log('App started on port 8080');
+// });
+
+// HEROKU APP LISTEN
+// ----------
+app.listen(process.env.PORT || 3000, () => {
+  console.log(
+    'Express server listening on port %d in %s mode',
+    this.address().port,
+    app.settings.env
+  );
 });
