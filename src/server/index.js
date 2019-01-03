@@ -56,10 +56,7 @@ app.get('/api/results/', (req, res) => {
 
 // HEROKU APP LISTEN
 // ----------
-app.listen(process.env.PORT || 3000, () => {
-  console.log(
-    'Express server listening on port %d in %s mode',
-    this.address().port,
-    app.settings.env
-  );
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log('Express server listening on port', port);
 });
