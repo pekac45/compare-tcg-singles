@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class ResultRow extends Component {
-  render() {
-    const result = this.props.result;
-    return (
-      <tr>
-        <td>{result.shop}</td>
-        <td>{result.title}</td>
-        <td>{result.price}</td>
-        <td>{result.stock}</td>
-      </tr>
-    );
-  }
-}
+const ResultRow = ({ result }) => (
+  <tr>
+    <td>{result.shop}</td>
+    <td>{result.title}</td>
+    <td>{result.price}</td>
+    <td>{result.stock}</td>
+  </tr>
+);
 
 ResultRow.propTypes = {
   result: PropTypes.shape({

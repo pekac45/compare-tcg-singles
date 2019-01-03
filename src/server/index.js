@@ -8,6 +8,9 @@ const scrapeBearded = require('../shops/beardedCardTrader');
 const app = express();
 
 app.get('/api/results/', (req, res) => {
+  let metadata = { total_count: 0 };
+  const results = [];
+
   const game = req.query.game;
   const card = req.query.card;
   console.log(game);
@@ -15,7 +18,6 @@ app.get('/api/results/', (req, res) => {
 
   if (game === 'destiny') {
     console.log('scraping destiny');
-    const results = [];
 
     scrapeRachel(card)
       .then(value => {
@@ -52,20 +54,20 @@ app.get('/api/results/', (req, res) => {
     // eslint-disable-next-line no-inner-declarations
     function sendData() {
       if (results.length === 2) {
-        const metadata = { total_count: results.length };
+        metadata = { total_count: results.length };
         console.log(`${metadata.total_count} results, sending data!`);
         res.json({ _metadata: metadata, records: results });
       } else {
         setTimeout(() => {
           sendData();
-        }, 10000);
+        }, 1000);
       }
     }
     sendData();
   } else if (game === 'champions') {
     // // TODO: Implement champions
   } else {
-    res.json({});
+    res.json({ _metadata: metadata, records: results });
   }
 });
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ResultRow from './ResultRow';
@@ -23,13 +24,7 @@ const ResultTable = props => {
 };
 
 ResultTable.propTypes = {
-  results: PropTypes.shape({
-    shop: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    stock: PropTypes.string,
-    map: PropTypes.func,
-  }).isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ResultTable;

@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import ResultTable from './ResultTable';
 
@@ -33,10 +35,11 @@ class ResultList extends Component {
   }
 
   render() {
+    const results = this.state.results;
     return (
       <div>
         <h1>Results</h1>
-        <ResultTable results={this.state.results} />
+        <ResultTable results={results} />
       </div>
     );
   }
