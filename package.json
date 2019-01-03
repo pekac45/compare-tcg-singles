@@ -12,7 +12,7 @@
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm install --dev && npm install && npm run build"
+    "heroku-prebuild": "npm install --dev && npm install && npm run build"
   },
   "author": "Michal Pekar",
   "license": "ISC",
