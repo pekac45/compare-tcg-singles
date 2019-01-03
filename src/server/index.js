@@ -44,9 +44,9 @@ app.get('/api/results/', (req, res) => {
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get('/', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/dist/index.html`));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(`${__dirname}/dist/index.html`));
+// });
 
 app.listen(8080, () => {
   console.log('App started on port 8080');
