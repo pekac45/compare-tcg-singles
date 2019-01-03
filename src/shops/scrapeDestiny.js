@@ -1,9 +1,13 @@
-/* eslint-disable func-names */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable space-before-function-paren */
-const rachel = require('./rachelsGameStore');
-const bearded = require('./beardedCardTrader');
+const scrapeRachel = require('../shops/rachelsGameStore');
+const scrapeBearded = require('../shops/beardedCardTrader');
 
-exports.results = function() {
-  [rachel, bearded];
+module.exports = function scrapeDestiny(card, results) {
+  scrapeRachel(card).then(value => {
+    // console.log(value); // Success!
+    results.push(value);
+  });
+  scrapeBearded(card).then(value => {
+    // console.log(value); // Success!
+    results.push(value);
+  });
 };

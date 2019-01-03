@@ -1,9 +1,8 @@
 /* eslint-disable prefer-destructuring */
 const express = require('express');
-const scrapeRachel = require('../shops/rachelsGameStore');
-const scrapeBearded = require('../shops/beardedCardTrader');
+const path = require('path');
 
-// const scrape = require('../shops/scrapeDestiny');
+const scrapeDestiny = require('../shops/scrapeDestiny');
 
 const app = express();
 
@@ -19,37 +18,9 @@ app.get('/api/results/', (req, res) => {
   if (game === 'destiny') {
     console.log('scraping destiny');
 
-    scrapeRachel(card)
-      .then(value => {
-        // console.log(value); // Success!
-        results.push(value);
-        console.log(results);
-      })
-      // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-      .catch(err => {
-        console.log(err);
-        return {
-          stock: 0,
-          shop: 'rachel',
-        };
-      });
-    // end rachelsGameStore.js
-    scrapeBearded(card)
-      .then(value => {
-        // console.log(value); // Success!
-        results.push(value);
-        console.log(results);
-      })
-      // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-      .catch(err => {
-        console.log(err);
-        return {
-          stock: 0,
-          shop: 'bearded',
-        };
-      });
+    scrapeDestiny(card, results);
 
-    // recursive function which makes sure there are 2 items in object,
+    // recursive function which makes sure there are 2 items in arrray,
     // then sends result
     // eslint-disable-next-line no-inner-declarations
     function sendData() {
@@ -69,6 +40,12 @@ app.get('/api/results/', (req, res) => {
   } else {
     res.json({ _metadata: metadata, records: results });
   }
+});
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('/', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/dist/index.html`));
 });
 
 app.listen(8080, () => {
