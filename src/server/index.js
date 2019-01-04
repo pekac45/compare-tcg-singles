@@ -6,6 +6,7 @@ const scrapeDestiny = require('../shops/scrapeDestiny');
 
 const app = express();
 
+app.use(express.static("dist"));
 app.get('/api/results/', (req, res) => {
   let metadata = { total_count: 0 };
   const results = [];
@@ -44,9 +45,9 @@ app.get('/api/results/', (req, res) => {
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(`${__dirname}/dist/index.html`));
-// });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(`/media/monubuntu/Backup/code/compare/compare-tcg-singles/public/index.html`));
+});
 
 // DEV APP LISTEN
 // ----------
