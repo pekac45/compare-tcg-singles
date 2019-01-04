@@ -14,6 +14,7 @@ module.exports = async function scrape(item) {
     .replace(/[“”"–'’]/g, '')
     .replace(/--/g, '-');
   const browser = await puppeteer.launch({
+    args: ['--no-sandbox'],
     // headless: false,
   });
 
