@@ -14,6 +14,7 @@ const Footer = () => (
       <li>add bootstrap and make pretty</li>
       <li>add autosuggest to search</li>
       <li>implement champions</li>
+      <li>add real footer</li>
     </ul>
   </div>
 );
