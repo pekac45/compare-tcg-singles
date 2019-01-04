@@ -46,11 +46,7 @@ app.get('/api/results/', (req, res) => {
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('/', (req, res) => {
-  res.sendFile(
-    path.join(
-      `/media/monubuntu/Backup/code/compare/compare-tcg-singles/public/index.html`
-    )
-  );
+  res.sendFile(path.join(`${__dirname}/../../public/index.html`));
 });
 
 // DEV APP LISTEN
