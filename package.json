@@ -39,6 +39,8 @@
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
+    "style-loader": "^0.23.0",
+    "url-loader": "^1.0.1",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.1.2"
   },
@@ -58,8 +60,6 @@
     "nodemon": "^1.18.9",
     "prettier": "^1.15.3",
     "react-bootstrap": "^0.32.4",
-    "style-loader": "^0.23.0",
-    "url-loader": "^1.0.1",
     "webpack-dev-server": "^3.1.14"
   }
 }
