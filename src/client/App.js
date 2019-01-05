@@ -12,6 +12,7 @@ const Footer = () => (
       <li>Todo:</li>
       <li>change from table to list</li>
       <li>add bootstrap and make pretty</li>
+      <li>add spinner</li>
       <li>add autosuggest to search</li>
       <li>implement champions</li>
       <li>add real footer</li>
