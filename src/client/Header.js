@@ -1,14 +1,9 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 
 const Header = () => (
-  <grid>
-    <Col xs={6} md={4}>
-      <div>
-        <h1>BLOBFISH</h1>
-      </div>
-    </Col>
-  </grid>
+  <div>
+    <h1>BLOP SHOP</h1>
+  </div>
 );
 
 export default Header;

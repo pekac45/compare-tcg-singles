@@ -9,6 +9,7 @@ const Footer = () => (
       <li>add spinner + no results found</li>
       <li>add autosuggest to search</li>
       <li>add more shops</li>
+      <li>implement caching</li>
       <li>implement champions</li>
       <li>add real footer</li>
     </ul>
