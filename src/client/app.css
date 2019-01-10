@@ -30,14 +30,14 @@ td {
   appearance: none;
 }
 .destiny {
-  background-image: url('https://lh3.googleusercontent.com/6yi7hwMhAVZtAhaE4TTM4HdnGCySaS3bWa-NOwdo9yTaGTm0SIypEMrLViRs_YIxsg8sHHymFoYpnSXDbB15=w2224-h1292');
+  background-image: url('../../src/assets/destiny.jpg');
   background-color: blue;
 }
 .champions {
-  background-image: url('https://lh6.googleusercontent.com/uDERKLIqNdhbAfU9MgIToLwuJNqzMsb0XyZ12YaF7Is7AYVrlJEkoXKy0c1ff2fp_TGuwC90FxFddZeOcZms=w2224-h1292');
+  background-image: url('../assets/champions.jpg');
   background-color: goldenrod;
 }
-/*
+
 .radioSelectors input:active + .radioSelector {
   opacity: 0.9;
 }
@@ -45,7 +45,7 @@ td {
   -webkit-filter: none;
   -moz-filter: none;
   filter: none;
-} */
+}
 .radioSelector {
   cursor: pointer;
   background-size: contain;
