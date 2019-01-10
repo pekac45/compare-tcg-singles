@@ -22,7 +22,7 @@ td {
   margin: 0;
 }
 
-.radioSelector input {
+.radioSelectors input {
   margin: 0;
   padding: 0;
   -webkit-appearance: none;
@@ -30,12 +30,10 @@ td {
   appearance: none;
 }
 .destiny {
-  background-image: url('../../src/assets/destiny.jpg');
-  background-color: blue;
+  background-image: url(../assets/destiny.jpg);
 }
 .champions {
-  background-image: url('../assets/champions.jpg');
-  background-color: goldenrod;
+  background-image: url(../assets/champions.jpg);
 }
 
 .radioSelectors input:active + .radioSelector {
@@ -48,7 +46,7 @@ td {
 }
 .radioSelector {
   cursor: pointer;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
   width: 300px;
@@ -65,15 +63,3 @@ td {
   -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
   filter: brightness(1.2) grayscale(0.5) opacity(0.9);
 }
-
-/* Extras */
-/* a:visited {
-  color: #888;
-}
-a {
-  color: #444;
-  text-decoration: none;
-}
-p {
-  margin-bottom: 0.3em;
-} */
