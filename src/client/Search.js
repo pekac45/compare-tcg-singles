@@ -1,12 +1,18 @@
 import React from 'react';
+import './app.css';
 
 const Search = () => (
   <div>
     <form method="get">
-      <input type="radio" name="game" value="destiny" />
-      Star Wars Destiny
-      <input type="radio" name="game" value="champions" />
-      Warhammer: Champions
+      <div className="radioSelectors">
+        <label htmlFor="destiny" className="radioSelector destiny">
+          <input type="radio" name="game" value="destiny" />
+        </label>
+        <label htmlFor="champions" className="radioSelector champions">
+          <input type="radio" name="game" value="champions" />
+        </label>
+      </div>
+      <br />
       <input type="text" name="card" placeholder="Enter Card Name" />
       <input type="submit" value="Submit" />
     </form>

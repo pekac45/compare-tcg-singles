@@ -21,3 +21,59 @@ td {
   padding: 0;
   margin: 0;
 }
+
+.radioSelector input {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.destiny {
+  background-image: url('https://lh3.googleusercontent.com/6yi7hwMhAVZtAhaE4TTM4HdnGCySaS3bWa-NOwdo9yTaGTm0SIypEMrLViRs_YIxsg8sHHymFoYpnSXDbB15=w2224-h1292');
+  background-color: blue;
+}
+.champions {
+  background-image: url('https://lh6.googleusercontent.com/uDERKLIqNdhbAfU9MgIToLwuJNqzMsb0XyZ12YaF7Is7AYVrlJEkoXKy0c1ff2fp_TGuwC90FxFddZeOcZms=w2224-h1292');
+  background-color: goldenrod;
+}
+/*
+.radioSelectors input:active + .radioSelector {
+  opacity: 0.9;
+}
+.radioSelectors input:checked + .radioSelector {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+} */
+.radioSelector {
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 300px;
+  height: 169px;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  filter: brightness(1.8) grayscale(1) opacity(0.7);
+}
+.radioSelector:hover {
+  -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+/* Extras */
+/* a:visited {
+  color: #888;
+}
+a {
+  color: #444;
+  text-decoration: none;
+}
+p {
+  margin-bottom: 0.3em;
+} */
