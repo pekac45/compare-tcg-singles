@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 const ResultRow = ({ result }) => (
   <tr>
-    <td>{result.shop}</td>
+    <td>
+      <a href={result.link} target="_blank" rel="noreferrer noopener">
+        {result.shop}
+      </a>
+    </td>
     <td>{result.title}</td>
     <td>{result.price}</td>
     <td>{result.stock}</td>
@@ -16,6 +20,7 @@ ResultRow.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.string,
     stock: PropTypes.string,
+    link: PropTypes.string,
   }).isRequired,
 };
 

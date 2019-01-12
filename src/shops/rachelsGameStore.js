@@ -42,11 +42,14 @@ module.exports = async function scrape(item) {
 
       const stock = document.querySelector('.stock').innerText.split(' ')[0];
 
+      const link = document.location.href;
+
       return {
         title,
         price,
         stock,
         shop: 'Rachels Game Store',
+        link,
       };
     });
   } catch (err) {

@@ -51,6 +51,7 @@ module.exports = async function scrape(item) {
   const result = await page.evaluate(() => {
     const title = document.querySelector('#wsite-com-product-title').innerText;
     const sale = Boolean(document.querySelector('#wsite-com-product-on-sale'));
+    const link = document.location.href;
 
     // returns correct price if on sale or regular price
     let price;
@@ -74,6 +75,7 @@ module.exports = async function scrape(item) {
       price,
       stock,
       shop: 'Bearded Card Trader',
+      link,
     };
   });
 

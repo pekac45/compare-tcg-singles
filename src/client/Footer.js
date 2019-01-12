@@ -9,7 +9,6 @@ const Footer = () => (
           <h3>Todo:</h3>
         </li>
         <li>change from table to list</li>
-        <li>add links to results</li>
         <li>add bulma and make pretty</li>
         <li>make radio buttons be remembered with a cookie</li>
         <li>add mobile hamburger menu</li>

@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static('dist'));
 app.get('/api/results/', (req, res) => {
   let metadata = { total_count: 0 };
-  const results = [];
+  let results = [];
 
   const game = req.query.game;
   const card = req.query.card;
@@ -37,7 +37,15 @@ app.get('/api/results/', (req, res) => {
     }
     sendData();
   } else if (game === 'champions') {
-    // // TODO: Implement champions
+    // TODO: Implement champions
+    results = [
+      {
+        shop: "nope, this doesn't exist yet!",
+        title: 'Warhammer: Champions are not implemented yet. Coming soon!',
+        price: '0',
+      },
+    ];
+    res.json({ _metadata: metadata, records: results });
   } else {
     res.json({ _metadata: metadata, records: results });
   }
@@ -48,12 +56,6 @@ app.get('/api/results/', (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(`${__dirname}/../../public/index.html`));
 });
-
-// DEV APP LISTEN
-// ----------
-// app.listen(8080, () => {
-//   console.log('App started on port 8080');
-// });
 
 // HEROKU APP LISTEN
 // ----------
