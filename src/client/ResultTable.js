@@ -9,7 +9,7 @@ const ResultTable = props => {
   ));
 
   return (
-    <table>
+    <table className="table is-striped ">
       <thead>
         <tr>
           <th>shop</th>
