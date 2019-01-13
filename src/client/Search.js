@@ -51,10 +51,10 @@ class Search extends Component {
               />
             </div>
           </div>
-          <div className="columns is-centered searchSubmit">
+          <div className="columns is-centered">
             <div className="column is-4">
               <input
-                className="button is-fullwidth"
+                className="button is-fullwidth searchSubmit"
                 type="submit"
                 value="Search"
               />

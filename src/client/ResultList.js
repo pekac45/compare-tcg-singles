@@ -1,12 +1,18 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+
+// components that will display the data
 import ResultTable from './ResultTable';
+import LoadingSpinner from './LoadingSpinner';
 
 class ResultList extends Component {
   constructor() {
     super();
-    this.state = { results: [] };
+    this.state = {
+      results: [],
+      loading: false,
+    };
   }
 
   componentDidMount() {
@@ -17,6 +23,9 @@ class ResultList extends Component {
   // const card = params.get('card');
 
   loadData() {
+    this.setState({
+      loading: true,
+    });
     let params;
     if (document.location.search.substring(1)) {
       params = document.location.search.substring(1);
@@ -27,7 +36,10 @@ class ResultList extends Component {
       .then(response => response.json())
       .then(data => {
         // console.log('Total count of prices:', data._metadata.total_count);
-        this.setState({ results: data.records });
+        this.setState({
+          results: data.records,
+          loading: false,
+        });
       })
       .catch(err => {
         console.log(err);
@@ -35,11 +47,21 @@ class ResultList extends Component {
   }
 
   render() {
-    const results = this.state.results;
+    const { results, loading } = this.state;
+    let content;
+
+    // If else statement which shows or hides the table,
+    // shows or hides the loading spinner when searching.
+    if (loading) {
+      content = <LoadingSpinner />;
+    } else if (results.length === 0) {
+      content = null;
+    } else {
+      content = <ResultTable results={results} />;
+    }
     return (
-      <div>
-        <h1>Results</h1>
-        <ResultTable results={results} />
+      <div className="container">
+        <div className="level-item">{content}</div>
       </div>
     );
   }

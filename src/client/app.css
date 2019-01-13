@@ -9,6 +9,7 @@ body {
 
 table {
   border: 1px solid silver;
+  text-align: center;
 }
 
 thead {
