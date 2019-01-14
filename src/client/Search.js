@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+import Suggestions from './Suggestions';
+
 import './app.css';
 import './search.css';
 
@@ -43,12 +45,7 @@ class Search extends Component {
           </div>
           <div className="columns is-centered searchBar">
             <div className="column is-4">
-              <input
-                className="input"
-                type="text"
-                name="card"
-                placeholder="Enter Card Name"
-              />
+              <Suggestions />
             </div>
           </div>
           <div className="columns is-centered">

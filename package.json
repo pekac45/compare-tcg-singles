@@ -37,7 +37,7 @@
     "prop-types": "^15.6.2",
     "puppeteer": "^1.11.0",
     "react": "^16.7.0",
-    "react-autosuggest": "^9.4.2",
+    "react-autosuggest": "^9.4.3",
     "react-bulma-components": "^2.3.0",
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",

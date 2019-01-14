@@ -9,17 +9,27 @@ const ResultTable = props => {
   ));
 
   return (
-    <table className="table is-striped ">
-      <thead>
-        <tr>
-          <th>shop</th>
-          <th>title</th>
-          <th>price</th>
-          <th>stock</th>
-        </tr>
-      </thead>
-      <tbody>{resultRows}</tbody>
-    </table>
+    <div>
+      <div className="columns is-centered">
+        <table className="table is-striped">
+          <thead>
+            <tr>
+              <th>shop</th>
+              <th>title</th>
+              <th>price</th>
+              <th>stock</th>
+            </tr>
+          </thead>
+          <tbody>{resultRows}</tbody>
+        </table>
+      </div>
+      <div className="columns is-centered">
+        <p className="column is-12">
+          Please note, sometimes the results might be not exact. Especially with
+          sites which does not have subtitle in name.
+        </p>
+      </div>
+    </div>
   );
 };
 
