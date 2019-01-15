@@ -1,5 +1,9 @@
 # Compare TCG Singles
 
-### where
+### Where?
 
-https://github.com/crsandeep/simple-react-full-stack
+https://guarded-beach.herokuapp.com
+
+### What is this?
+
+Price comaprison for Star Wars: Destiny singles.
