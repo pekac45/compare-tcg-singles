@@ -23,7 +23,7 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion =>
   suggestion.subtitle === ''
     ? `${suggestion.name}`
-    : `${suggestion.name} ${suggestion.subtitle}`;
+    : `${suggestion.name} - ${suggestion.subtitle}`;
 
 // Renders suggestion as suggestion name or
 // suggestion + subtitle if there is subtitle.
