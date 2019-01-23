@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+// eslint-disable-next-line no-unused-vars
 import Suggestions from './Suggestions';
 
 import './app.css';
@@ -10,7 +11,7 @@ import './search.css';
 class Search extends Component {
   constructor() {
     super();
-    this.state = { selectedOption: 'destiny', value: '' };
+    this.state = { selectedOption: 'destiny', card: '' };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleCardChange = this.handleCardChange.bind(this);
   }
@@ -22,7 +23,7 @@ class Search extends Component {
   };
 
   handleCardChange(e) {
-    this.setState({ value: e.target.value });
+    this.setState({ card: e.target.value });
   }
 
   handleFormSubmit(e) {
@@ -30,7 +31,7 @@ class Search extends Component {
 
     const formPayload = {
       game: this.state.selectedOption,
-      value: this.state.value,
+      card: this.state.card,
     };
 
     console.log('Send this in a POST request:', formPayload);
@@ -63,18 +64,11 @@ class Search extends Component {
           </div>
           <div className="columns is-centered searchBar">
             <div className="column is-4">
-              {/* <Suggestions
-                type="text"
-                title="value"
-                name="value"
-                content={this.state.value}
-                onChange={this.handleCardChange}
-                placeholder="Search for card"
-              /> */}
+              {/* <Suggestions /> */}
               <input
                 type="text"
                 title="value"
-                name="value"
+                card="value"
                 content={this.state.value}
                 onChange={this.handleCardChange}
                 placeholder="Search for card"
@@ -88,11 +82,6 @@ class Search extends Component {
                 className="button is-fullwidth searchSubmit"
                 value="Submit"
               />
-              {/* <input
-                className="button is-fullwidth searchSubmit"
-                type="submit"
-                value="Search"
-              /> */}
             </div>
           </div>
         </form>
