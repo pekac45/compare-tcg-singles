@@ -66,21 +66,13 @@ class Search extends Component {
           </div>
           <div className="columns is-centered searchBar">
             <div className="column is-4">
-              {/* <Suggestions /> */}
+              {/* <Suggestions handleChange={this.handleCardName} /> */}
               {/* THIS WORKS */}
-              {/* <input
-                type="text"
-                title="value"
-                card="value"
-                content={this.state.value}
-                onChange={this.handleCardChange}
-                placeholder="Search for card"
-              /> */}
+
               <SingleInput
                 type="text"
                 title="Full Name"
                 name="name"
-                value={this.state.card}
                 placeholder="Enter your name"
                 handleChange={this.handleCardName}
               />
