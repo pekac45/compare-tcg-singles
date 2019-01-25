@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 // eslint-disable-next-line no-unused-vars
 import Suggestions from './Suggestions';
+import SingleInput from './SingleInput';
 
 import './app.css';
 import './search.css';
@@ -11,9 +12,9 @@ import './search.css';
 class Search extends Component {
   constructor() {
     super();
-    this.state = { selectedOption: 'destiny', card: '' };
+    this.state = { selectedOption: 'destiny', value: '', temperature: '' };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleCardChange = this.handleCardChange.bind(this);
+    this.handleSingleInput = this.handleSingleInput.bind(this);
   }
 
   handleOptionChange = e => {
@@ -22,8 +23,9 @@ class Search extends Component {
     });
   };
 
-  handleCardChange(e) {
-    this.setState({ card: e.target.value });
+  handleSingleInput(e) {
+    console.log('typing');
+    this.setState({ value: e.target });
   }
 
   handleFormSubmit(e) {
@@ -31,7 +33,7 @@ class Search extends Component {
 
     const formPayload = {
       game: this.state.selectedOption,
-      card: this.state.card,
+      value: this.state.value,
     };
 
     console.log('Send this in a POST request:', formPayload);
@@ -65,14 +67,17 @@ class Search extends Component {
           <div className="columns is-centered searchBar">
             <div className="column is-4">
               {/* <Suggestions /> */}
-              <input
+              {/* THIS WORKS */}
+              {/* <input
                 type="text"
                 title="value"
                 card="value"
                 content={this.state.value}
                 onChange={this.handleCardChange}
                 placeholder="Search for card"
-              />
+              /> */}
+
+              <SingleInput onChange={this.handleSingleInput} />
             </div>
           </div>
           <div className="columns is-centered">
