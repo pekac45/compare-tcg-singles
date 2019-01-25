@@ -12,20 +12,21 @@ import './search.css';
 class Search extends Component {
   constructor() {
     super();
-    this.state = { selectedOption: 'destiny', value: '', temperature: '' };
+    this.state = { selectedOption: 'destiny', card: '' };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleSingleInput = this.handleSingleInput.bind(this);
+    this.handleCardName = this.handleCardName.bind(this);
   }
 
+  // This one works with radio buttons
   handleOptionChange = e => {
     this.setState({
       selectedOption: e.target.value,
     });
   };
 
-  handleSingleInput(e) {
-    console.log('typing');
-    this.setState({ value: e.target });
+  // This one works with form
+  handleCardName(e) {
+    this.setState({ card: e.target.value });
   }
 
   handleFormSubmit(e) {
@@ -33,11 +34,10 @@ class Search extends Component {
 
     const formPayload = {
       game: this.state.selectedOption,
-      value: this.state.value,
+      card: this.state.card,
     };
 
     console.log('Send this in a POST request:', formPayload);
-    console.log(formPayload);
   }
 
   render() {
@@ -76,8 +76,14 @@ class Search extends Component {
                 onChange={this.handleCardChange}
                 placeholder="Search for card"
               /> */}
-
-              <SingleInput onChange={this.handleSingleInput} />
+              <SingleInput
+                type="text"
+                title="Full Name"
+                name="name"
+                value={this.state.card}
+                placeholder="Enter your name"
+                handleChange={this.handleCardName}
+              />
             </div>
           </div>
           <div className="columns is-centered">
