@@ -4,7 +4,6 @@ const Footer = () => (
   <footer className="footer">
     <strong className="title is-3">What&apos;s coming next?</strong>
     <ul>
-      <li>Submitting will not refresh the page anymore.</li>
       <li>Nicer logo and Home Button font.</li>
       <li>More shops.</li>
       <li>Nicer footer.</li>

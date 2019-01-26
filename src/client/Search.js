@@ -2,27 +2,45 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Suggestions from './Suggestions';
 
 import './app.css';
 import './search.css';
 
 class Search extends Component {
-  constructor() {
-    super();
-    this.state = { selectedOption: 'destiny' };
+  constructor(props) {
+    super(props);
+    this.state = { selectedOption: 'destiny', card: '' };
   }
 
-  handleOptionChange = changeEvent => {
+  // This one works with radio buttons
+  handleOptionChange = e => {
     this.setState({
-      selectedOption: changeEvent.target.value,
+      selectedOption: e.target.value,
     });
+  };
+
+  // This one works with form
+  handleCardName = e => {
+    this.setState({ card: e });
+  };
+
+  // This one works with submit button
+  handleFormSubmit = e => {
+    e.preventDefault();
+
+    const formPayload = {
+      game: this.state.selectedOption,
+      card: this.state.card,
+    };
+    this.props.onSelectPayload(formPayload);
   };
 
   render() {
     return (
       <div>
-        <form method="get">
+        <form onSubmit={this.handleFormSubmit}>
           <div className="radioSelectors">
             <input
               id="destiny"
@@ -45,14 +63,14 @@ class Search extends Component {
           </div>
           <div className="columns is-centered searchBar">
             <div className="column is-4">
-              <Suggestions />
+              <Suggestions onSelectCard={this.handleCardName} />
             </div>
           </div>
           <div className="columns is-centered">
             <div className="column is-4">
               <input
-                className="button is-fullwidth searchSubmit"
                 type="submit"
+                className="button is-fullwidth searchSubmit"
                 value="Search"
               />
             </div>
@@ -62,4 +80,9 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  onSelectPayload: PropTypes.func.isRequired,
+};
+
 export default Search;

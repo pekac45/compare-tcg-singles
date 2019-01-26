@@ -1,49 +1,51 @@
-/* eslint-disable prefer-destructuring */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // components that will display the data
 import ResultTable from './ResultTable';
 import LoadingSpinner from './LoadingSpinner';
 
 class ResultList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       results: [],
       loading: false,
     };
   }
 
-  componentDidMount() {
-    this.loadData();
+  componentDidUpdate(prevProps) {
+    if (this.props.formPayload !== prevProps.formPayload) {
+      this.loadData(this.props.formPayload);
+    }
   }
 
-  // const game = params.get('game');
-  // const card = params.get('card');
-
   loadData() {
-    this.setState({
-      loading: true,
-    });
-    let params;
-    if (document.location.search.substring(1)) {
-      params = document.location.search.substring(1);
-    } else {
-      params = '';
-    }
-    fetch(`/api/results/?${params}`)
-      .then(response => response.json())
-      .then(data => {
-        // console.log('Total count of prices:', data._metadata.total_count);
-        this.setState({
-          results: data.records,
-          loading: false,
-        });
-      })
-      .catch(err => {
-        console.log(err);
+    const query = this.props.formPayload;
+    console.log('(ResultList.js) Data received:', query);
+
+    // Make sure that game and card is defined before starting fetching
+    if (query.game && query.card) {
+      // Starts loading spinner
+      this.setState({
+        loading: true,
       });
+
+      fetch(`/api/results/?game=${query.game}&card=${query.card}`)
+        .then(response => response.json())
+        .then(data => {
+          // console.log('Total count of prices:', data._metadata.total_count);
+          this.setState({
+            results: data.records,
+            // finish loading spinner
+            loading: false,
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 
   render() {
@@ -66,5 +68,16 @@ class ResultList extends Component {
     );
   }
 }
+
+ResultList.propTypes = {
+  formPayload: PropTypes.shape({
+    game: PropTypes.string,
+    card: PropTypes.string,
+  }),
+};
+
+ResultList.defaultProps = {
+  formPayload: { game: '', card: ' ' },
+};
 
 export default ResultList;
