@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable prefer-destructuring */
+import React, { Component } from 'react';
 import 'react-bulma-components/full';
 import './app.css';
 import './suggestions.css';
@@ -10,13 +12,28 @@ import Header from './Header';
 
 const results = [];
 
-const App = () => (
-  <div className="container-fluid">
-    <Header />
-    <Search />
-    <ResultList results={results} />
-    <Footer />
-  </div>
-);
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      formPayload: {},
+    };
+  }
+
+  handlePayload = e => {
+    this.setState({ formPayload: e });
+  };
+
+  render() {
+    return (
+      <div className="container-fluid">
+        <Header />
+        <Search onSelectPayload={this.handlePayload} />
+        <ResultList formPayload={this.state.formPayload} results={results} />
+        <Footer />
+      </div>
+    );
+  }
+}
 
 export default App;

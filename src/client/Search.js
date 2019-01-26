@@ -2,17 +2,16 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Suggestions from './Suggestions';
 
 import './app.css';
 import './search.css';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { selectedOption: 'destiny', card: '' };
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleCardName = this.handleCardName.bind(this);
   }
 
   // This one works with radio buttons
@@ -23,21 +22,20 @@ class Search extends Component {
   };
 
   // This one works with form
-  handleCardName(cardValue) {
-    this.setState({ card: cardValue });
-  }
+  handleCardName = e => {
+    this.setState({ card: e });
+  };
 
   // This one works with submit button
-  handleFormSubmit(e) {
+  handleFormSubmit = e => {
     e.preventDefault();
 
     const formPayload = {
       game: this.state.selectedOption,
       card: this.state.card,
     };
-
-    console.log('Send this in a POST request:', formPayload);
-  }
+    this.props.onSelectPayload(formPayload);
+  };
 
   render() {
     return (
@@ -73,7 +71,7 @@ class Search extends Component {
               <input
                 type="submit"
                 className="button is-fullwidth searchSubmit"
-                value="Submit"
+                value="Search"
               />
             </div>
           </div>
@@ -82,4 +80,9 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  onSelectPayload: PropTypes.func.isRequired,
+};
+
 export default Search;
