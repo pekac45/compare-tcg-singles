@@ -1,6 +1,5 @@
 import React from 'react';
 import 'react-bulma-components/full';
-// import PropTypes from 'prop-types';
 import './app.css';
 import './suggestions.css';
 

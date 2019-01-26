@@ -1,5 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
 import Autosuggest from 'react-autosuggest';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './suggestions.css';
 
 // Our list of cards to autosuggest.
@@ -49,10 +52,21 @@ class Suggestions extends Component {
     };
   }
 
+  // This moves state 1 level up
+  handleCardChange = () => {
+    const card = this.state.value;
+    this.props.onSelectCard(card);
+  };
+
   onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue,
-    });
+    this.setState(
+      {
+        // This updates Autosuggest
+        value: newValue,
+      },
+      // This makes input works
+      this.handleCardChange
+    );
   };
 
   // Autosuggest will call this function every time you need to update suggestions.
@@ -97,5 +111,9 @@ class Suggestions extends Component {
     );
   }
 }
+
+Suggestions.propTypes = {
+  onSelectCard: PropTypes.func.isRequired,
+};
 
 export default Suggestions;

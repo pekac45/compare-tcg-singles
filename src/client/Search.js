@@ -2,9 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
-// eslint-disable-next-line no-unused-vars
 import Suggestions from './Suggestions';
-import SingleInput from './SingleInput';
 
 import './app.css';
 import './search.css';
@@ -25,10 +23,11 @@ class Search extends Component {
   };
 
   // This one works with form
-  handleCardName(e) {
-    this.setState({ card: e.target.value });
+  handleCardName(cardValue) {
+    this.setState({ card: cardValue });
   }
 
+  // This one works with submit button
   handleFormSubmit(e) {
     e.preventDefault();
 
@@ -66,16 +65,7 @@ class Search extends Component {
           </div>
           <div className="columns is-centered searchBar">
             <div className="column is-4">
-              {/* <Suggestions handleChange={this.handleCardName} /> */}
-              {/* THIS WORKS */}
-
-              <SingleInput
-                type="text"
-                title="Full Name"
-                name="name"
-                placeholder="Enter your name"
-                handleChange={this.handleCardName}
-              />
+              <Suggestions onSelectCard={this.handleCardName} />
             </div>
           </div>
           <div className="columns is-centered">
