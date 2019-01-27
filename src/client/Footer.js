@@ -1,18 +1,19 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="footer">
-    <strong className="title is-3">What&apos;s coming next?</strong>
+  <nav className="breadcrumb is-centered is-small bottom-breadcrumb">
     <ul>
-      <li>Nicer logo and Home Button font.</li>
-      <li>More shops.</li>
-      <li>Nicer footer.</li>
-      <li>Radio buttons will be remembered with a cookie.</li>
-      <li>Mobile hamburger menu.</li>
-      <li>Caching.</li>
-      <li>Warhammer Age of Sigmar: Champions.</li>
+      <li>
+        <a href="https://pekar.space">Made by</a>
+      </li>
+      <li>
+        <a href="https://github.com/pekac45">See source code</a>
+      </li>
+      <li>
+        <a href="https://opensource.org/licenses/MIT">License</a>
+      </li>
     </ul>
-  </footer>
+  </nav>
 );
 
 export default Footer;

@@ -12,8 +12,13 @@ body {
   margin: auto;
 }
 
-.footer {
-  margin-top: 2em;
+.hero-coming-next {
+  margin-top: 3em;
+  background-color: #8b74ff2f;
+}
+
+.bottom-breadcrumb {
+  padding: 1em;
 }
 
 table {

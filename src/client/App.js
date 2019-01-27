@@ -7,8 +7,9 @@ import './suggestions.css';
 
 import Search from './Search';
 import ResultList from './ResultList';
-import Footer from './Footer';
+import NextHero from './NextHero';
 import Header from './Header';
+import Footer from './Footer';
 
 const results = [];
 
@@ -30,6 +31,7 @@ class App extends Component {
         <Header />
         <Search onSelectPayload={this.handlePayload} />
         <ResultList formPayload={this.state.formPayload} results={results} />
+        <NextHero />
         <Footer />
       </div>
     );
