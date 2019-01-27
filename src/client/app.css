@@ -3,18 +3,18 @@
   margin: 0;
 }
 
-h1 {
-  color: green;
-}
-
 body {
   text-align: center;
   margin: auto;
 }
 
+.title {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
 .hero-coming-next {
   margin-top: 3em;
-  background-color: #8b74ff2f;
+  background-color: #ededed;
 }
 
 .bottom-breadcrumb {
