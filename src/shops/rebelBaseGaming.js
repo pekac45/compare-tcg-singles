@@ -34,7 +34,7 @@ module.exports = async function scrape(item) {
       return {
         title: item,
         price: '£0',
-        stock: 0,
+        stock: 'Out',
         shop: 'Rebel Base Gaming',
       };
     }
@@ -46,27 +46,14 @@ module.exports = async function scrape(item) {
     const title = document.querySelector(
       '.product-heading-d > h1:nth-child(1) > span:nth-child(1)'
     ).innerText;
-    // const sale = Boolean(document.querySelector('#wsite-com-product-on-sale'));
-    const link = document.location.href;
 
-    // returns correct price if on sale or regular price
-    // let price;
-    // if (sale) {
-    //   price = document.querySelector('#wsite-com-product-price-sale > span')
-    //     .innerText;
-    // } else {
-    //   price = document.querySelector(
-    //     '#wsite-com-product-price > span:nth-child(1)'
-    //   ).innerText;
-    // }
+    const link = document.location.href;
 
     const price = `£${document.querySelector('#_EKM_PRODUCTPRICE').innerText}`;
 
     const stock = document
       .querySelector('#_EKM_PRODUCTSTOCK')
       .innerText.split(' ')[2];
-
-    // TODO: MAKE SURE IT RETURNS CORRECT CARD BY COMPARING THE TITLE
 
     return {
       title,

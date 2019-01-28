@@ -40,7 +40,7 @@ module.exports = async function scrape(item) {
       return {
         title: item,
         price: '£0',
-        stock: 0,
+        stock: 'Out',
         shop: 'Bearded Card Trader',
       };
     }
