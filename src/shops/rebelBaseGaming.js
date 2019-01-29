@@ -4,13 +4,13 @@ const puppeteer = require('puppeteer');
 const { TimeoutError } = require('puppeteer/Errors');
 
 // const test = 'Fifth Brother - Intimidating Enforcer'; // test card
-const test = 'Mobilize'; // Card not in stock
+// const test = 'Mobilize'; // Card not in stock
 
-async function scrape(item) {
+module.exports = async function scrape(item) {
   const parsedCard = item.replace(/-/g, '');
   const browser = await puppeteer.launch({
-    // args: ['--no-sandbox'],
-    headless: false,
+    args: ['--no-sandbox'],
+    // headless: false,
   });
   const page = await browser.newPage();
 
@@ -92,17 +92,17 @@ async function scrape(item) {
     stock: 'Out',
     shop: 'Bearded Card Trader',
   };
-}
+};
 // Uncomment only if non modular
-scrape(test)
-  .then(value => {
-    console.log(value); // Success!
-  })
-  // TODO: CATCH ERROR TO RETURN NOT IN STOCK
-  .catch(err => {
-    console.log(err);
-    return {
-      stock: 'out',
-      shop: 'Rebel Base Gaming',
-    };
-  });
+// scrape(test)
+//   .then(value => {
+//     console.log(value); // Success!
+//   })
+//   // TODO: CATCH ERROR TO RETURN NOT IN STOCK
+//   .catch(err => {
+//     console.log(err);
+//     return {
+//       stock: 'out',
+//       shop: 'Rebel Base Gaming',
+//     };
+//   });
