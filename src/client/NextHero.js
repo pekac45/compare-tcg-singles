@@ -23,7 +23,7 @@ const NextHero = () => (
           <a href="https://github.com/pekac45/compare-tcg-singles/issues">
             GitHub
           </a>{' '}
-          and raise issue.
+          by raising an issue.
         </h2>
       </div>
     </div>
