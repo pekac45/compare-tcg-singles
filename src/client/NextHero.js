@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 
 const NextHero = () => (
@@ -12,6 +13,17 @@ const NextHero = () => (
             <li>Caching.</li>
             <li>Warhammer Age of Sigmar: Champions.</li>
           </ul>
+        </h2>
+        <br />
+        <h1 className="title">
+          Do you want to see more shops here or did you find an issue?
+        </h1>
+        <h2 className="subtitle">
+          Let me know on{' '}
+          <a href="https://github.com/pekac45/compare-tcg-singles/issues">
+            GitHub
+          </a>{' '}
+          and raise issue.
         </h2>
       </div>
     </div>
