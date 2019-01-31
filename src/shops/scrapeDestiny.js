@@ -20,4 +20,5 @@ module.exports = function scrapeDestiny(card, results) {
     console.log(value); // Success!
     results.push(value);
   });
+  console.log(results);
 };
