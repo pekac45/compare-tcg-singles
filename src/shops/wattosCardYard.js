@@ -8,6 +8,7 @@ const { TimeoutError } = require('puppeteer/Errors');
 
 module.exports = async function scrape(item) {
   const browser = await puppeteer.launch({
+    timeout: 20000,
     args: ['--no-sandbox'],
     // headless: false,
   });
