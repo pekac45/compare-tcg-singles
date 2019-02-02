@@ -25,7 +25,7 @@ app.get('/api/results/', (req, res) => {
     // then sends result
     // eslint-disable-next-line no-inner-declarations
     function sendData() {
-      if (results.length === 4) {
+      if (results.length === 3) {
         metadata = { total_count: results.length };
         console.log(`${metadata.total_count} results, sending data!`);
         res.json({ _metadata: metadata, records: results });
