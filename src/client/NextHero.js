@@ -9,9 +9,9 @@ const NextHero = () => (
         <h2 className="subtitle">
           <ul>
             <li>More shops.</li>
-            <li>Radio buttons will be remembered with a cookie.</li>
             <li>Caching.</li>
             <li>Warhammer Age of Sigmar: Champions.</li>
+            <li>Radio buttons will be remembered with a cookie.</li>
           </ul>
         </h2>
         <br />
