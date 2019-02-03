@@ -7,18 +7,19 @@ const { TimeoutError } = require('puppeteer/Errors');
 // const test = 'Darth Vader - Dark Apprentice'; // test card
 
 module.exports = async function scrape(item) {
-  const browser = await puppeteer.launch({
-    timeout: 20000,
-    args: ['--no-sandbox'],
-    // headless: false,
-  });
-
-  const page = await browser.newPage();
-
-  await page.goto('https://wattoscardyard.co.uk', {
-    waitUntil: 'networkidle2',
-  });
   try {
+    const browser = await puppeteer.launch({
+      timeout: 20000,
+      args: ['--no-sandbox'],
+      // headless: false,
+    });
+
+    const page = await browser.newPage();
+
+    await page.goto('https://wattoscardyard.co.uk', {
+      waitUntil: 'networkidle2',
+    });
+
     // this navigates to the card name and comes to first one in the list
     await page.waitFor(
       'body > div.Layout1.GeneralLayout.Div > div.NavBarTop.HorizontalNavBar > div > div > div > form > div > div > input'
@@ -143,7 +144,7 @@ module.exports = async function scrape(item) {
     return result;
   } catch (err) {
     if (err instanceof TimeoutError) {
-      browser.close();
+      this.browser.close();
       return {
         title: item,
         price: '£0',
